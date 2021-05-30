@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://Rand0m-dev.github.io/goit-js-hw-10-food-service2",
+  "homepage": "https://rand0m-dev.github.io/goit-js-hw-10-food-service2",
   "scripts": {
     "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-js-hw-10-food-service2/",
@@ -12,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    "url": "git+https://github.com/Rand0m-dev/goit-js-hw-10-food-service2.git"
   },
   "keywords": [],
   "author": "Ihor Kiriienko <flesh0099@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/goitacademy/parcel-project-template/issues"
+    "url": "https://github.com/Rand0m-dev/goit-js-hw-10-food-service2/issues"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
