@@ -9,38 +9,49 @@ const Theme = {
 const refs = {
     menu: document.querySelector('.js-menu'),
     checkbox: document.querySelector('#theme-switch-toggle'),
+    body: document.body,
 };
-
 
 const createDishCards = menu => refs.menu.insertAdjacentHTML('beforeend', dishCardsTpl(menu));
 
 createDishCards(menu);
 
-let themeData = '';
-const onChangeTheme = () => {
-    if (refs.checkbox.checked) {
-        themeData = Theme.DARK;
-        document.body.classList.remove(Theme.LIGHT);
-        document.body.classList.add(Theme.DARK);
-    }
-    else {
-        themeData = Theme.LIGHT;
-        document.body.classList.replace(Theme.DARK, Theme.LIGHT);
-    };
 
-    localStorage.setItem('theme', themeData);  
-};
+let savedTheme = localStorage.getItem('theme');
 
-const savedTheme = () => {
-    const currentTheme = localStorage.getItem('theme');
+refs.checkbox.addEventListener('change', onSwitchToggleClick);
 
-    if (currentTheme === Theme.DARK) {
-        document.body.classList.add(currentTheme);
-        refs.checkbox.setAttribute("checked", "checked");
-    };
-};
 
-savedTheme();
+window.addEventListener('load', currentTheme);
 
-refs.checkbox.addEventListener('change', onChangeTheme);
+function onSwitchToggleClick(event) {
+  event.currentTarget.checked ? enableDarkTheme() : enableLightTheme();
+}
 
+function toggleTheme(add, remove) {
+  refs.body.classList.remove(remove);
+  refs.body.classList.add(add);
+  localStorage.setItem('theme', add);
+}
+
+function enableDarkTheme() {
+  toggleTheme(Theme.DARK, Theme.LIGHT);
+  refs.checkbox.checked = true;
+}
+
+function enableLightTheme() {
+  toggleTheme(Theme.LIGHT, Theme.DARK);
+  refs.checkbox.checked = false;
+}
+
+function currentTheme() {
+  if (savedTheme === Theme.LIGHT || savedTheme === null) {
+    enableLightTheme();
+    return;
+  }
+
+  if (savedTheme === Theme.DARK) {
+    enableDarkTheme();
+    return;
+  }
+}
